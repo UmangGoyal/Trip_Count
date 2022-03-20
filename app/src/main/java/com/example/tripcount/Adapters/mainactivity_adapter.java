@@ -1,24 +1,29 @@
 package com.example.tripcount.Adapters;
 
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tripcount.Model.MainActivity_DataSet;
+import com.example.tripcount.Entity.Trip;
 import com.example.tripcount.R;
 
 public class mainactivity_adapter extends RecyclerView.Adapter<mainactivity_adapter.mainactivity_ViewHolder> {
-    private MainActivity_DataSet[] data ;
+    private Trip[] data ;
     onClickListener onClickListener;
-    public mainactivity_adapter(MainActivity_DataSet[] data ,onClickListener onClickListener)
+    public mainactivity_adapter(Trip[] data ,onClickListener onClickListener)
     {
         this.data = data;
         this.onClickListener=onClickListener;
+    }
+
+    public mainactivity_adapter() {
+
     }
 
     @NonNull
@@ -31,9 +36,9 @@ public class mainactivity_adapter extends RecyclerView.Adapter<mainactivity_adap
 
     @Override
     public void onBindViewHolder(@NonNull mainactivity_ViewHolder holder, int position) {
-        MainActivity_DataSet dt= data[position];
-        holder.tripname.setText(MainActivity_DataSet.getTripName());
-        holder.no_of_people.setText(MainActivity_DataSet.getNo_of_people());
+        Trip dt= data[position];
+        holder.tripname.setText(Trip.getTrip_Name());
+        holder.no_of_people.setText(Trip.getNo_of_people());
     }
 
 
@@ -54,7 +59,6 @@ public class mainactivity_adapter extends RecyclerView.Adapter<mainactivity_adap
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View view) {
             onClickListener.onClick(getAdapterPosition());
@@ -64,4 +68,5 @@ public class mainactivity_adapter extends RecyclerView.Adapter<mainactivity_adap
     {
         void onClick(int position);
     }
+
 }
